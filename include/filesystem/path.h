@@ -71,6 +71,9 @@ public:
    bool is_absolute() const noexcept { return !pth.empty() && pth.front() == preferred_separator; }
    bool is_relative() const noexcept { return !is_absolute(); }
 
+   // compare (strcmp semantics basically)
+   int compare(const path& withthis) const;
+
    friend path operator/(const path& lhs, const path& rhs) { return path(lhs) /= rhs; }
    friend std::ostream& operator<<(std::ostream& os, const path& p);
 

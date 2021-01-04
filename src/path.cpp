@@ -163,6 +163,18 @@ std::ostream& operator<<(std::ostream& os, const path& p)
    return os;
 }
 
+int path::compare(const path& that) const 
+{
+#ifdef _WIN32
+   auto ts = u8string();
+   auto xs = that.u8string();
+#else
+   auto ts = generic_string();
+   auto xs = that.generic_string();
+#endif
+   return strcmp( ts.c_str(), xs.c_str() );
+}
+
 } // namespace filesystem
 
 } // namespace Surge
